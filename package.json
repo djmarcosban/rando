@@ -1,0 +1,25 @@
+{
+  "name": "rando",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.3",
+    "password-generator": "^2.1.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && yarn && yarn run build"
+  },
+  "description": "A password generator built with React and Express.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dceddia/rando.git"
+  },
+  "keywords": [],
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/dceddia/rando/issues"
+  },
+  "homepage": "https://github.com/dceddia/rando#readme"
+}
