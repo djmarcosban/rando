@@ -25,7 +25,6 @@ function App() {
 
   );
 }
-
 /*
 class App extends Component {
   // Initialize state
