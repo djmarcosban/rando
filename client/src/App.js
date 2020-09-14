@@ -1,6 +1,32 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import './App.css';
+import { maskify } from "./util/maskify";
+import { getEspecificParam } from "./util/getparams";
+import GridItem from "./util/griditem";
 
+function App() {
+
+  const oculosParam = getEspecificParam('oculos')
+  const oculosParamSplited = oculosParam.split(",")
+
+  useEffect(() => {
+    maskify(oculosParamSplited)
+  }, [])
+
+  return (
+    
+    <div>
+      <main className="content">
+        <div className="grid">
+          <GridItem />
+        </div>
+      </main>
+    </div>
+
+  );
+}
+
+/*
 class App extends Component {
   // Initialize state
   state = { passwords: [] }
@@ -12,7 +38,7 @@ class App extends Component {
 
   getPasswords = () => {
     // Get the passwords and store them in state
-    fetch('/api/passwords')
+    fetch('/url')
       .then(res => res.json())
       .then(passwords => this.setState({ passwords }));
   }
@@ -20,19 +46,38 @@ class App extends Component {
   render() {
     const { passwords } = this.state;
 
+    const oculosParam = getEspecificParam('oculos');
+    const oculosParamSplited = oculosParam.split(",");
+  
+    useEffect(() => {
+      maskify(['images/overlay-blue-monster.png'])
+    }, [])
+
+
     return (
       <div className="App">
-        {/* Render the passwords if we have them */}
+
+
+      <div>
+        <main className="content">
+          <div className="grid">
+            <GridItem />
+          </div>
+        </main>
+      </div>
+
+
+      <hr />
+
+
+
+
+
+
         {passwords.length ? (
           <div>
             <h1>5 Passwords.</h1>
             <ul className="passwords">
-              {/*
-                Generally it's bad to use "index" as a key.
-                It's ok for this example because there will always
-                be the same number of passwords, and they never
-                change positions in the array.
-              */}
               {passwords.map((password, index) =>
                 <li key={index}>
                   {password}
@@ -60,5 +105,5 @@ class App extends Component {
     );
   }
 }
-
+*/
 export default App;
