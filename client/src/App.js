@@ -1,10 +1,22 @@
 import React, { Component, useEffect } from 'react';
-import './App.css';
-import { maskify } from "./util/maskify";
-import { getEspecificParam } from "./util/getparams";
-import GridItem from "./util/griditem";
+//import './App.css';
+//import { maskify } from "./util/maskify";
+//import { getEspecificParam } from "./util/getparams";
+//import GridItem from "./util/griditem";
+
 
 function App() {
+
+  return (
+    
+    <div>
+    teste
+    </div>
+
+  );
+}
+
+/*function App() {
 
   const oculosParam = getEspecificParam('oculos')
   const oculosParamSplited = oculosParam.split(",")
