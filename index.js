@@ -34,7 +34,8 @@ app.get('/upload', function(req, res, next) {
 
 app.post('/upload', upload.single('file'), function(req, res) {
 	const { filename, path } = req.file;
-	res.redirect('http://rando-do-marcos.herokuapp.com/?modelo=modelos/' + filename + '&oculos=images/overlay-blue-monster.png');
+	res.send(path)
+	//res.redirect('http://rando-do-marcos.herokuapp.com/?modelo=modelos/' + filename + '&oculos=images/overlay-blue-monster.png');
 });
 
 app.use(function(req, res, next) {
