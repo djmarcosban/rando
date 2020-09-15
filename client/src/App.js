@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import './App.css';
-import { maskify } from "./util/maskify";
-import { getEspecificParam } from "./util/getparams";
-import GridItem from "./util/griditem";
+import React, { useEffect } from "react"
+import "./App.css"
+import { maskify } from "./util/maskify"
+import { getEspecificParam } from "./util/getparams"
+import GridItem from "./util/griditem"
 
 function App() {
   useEffect(() => {
@@ -24,4 +24,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
