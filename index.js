@@ -15,7 +15,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, 'public/')));
 
 const upload = multer({ 
   storage: multer.diskStorage({
@@ -34,8 +34,8 @@ app.get('/upload', function(req, res, next) {
 
 app.post('/upload', upload.single('file'), function(req, res) {
 	const { filename, path } = req.file;
-	res.send(path)
-	//res.redirect('http://rando-do-marcos.herokuapp.com/?modelo=modelos/' + filename + '&oculos=images/overlay-blue-monster.png');
+	//res.send(req.file)
+	res.redirect('http://rando-do-marcos.herokuapp.com/?modelo=modelos/' + filename + '&oculos=images/overlay-blue-monster.png');
 });
 
 app.use(function(req, res, next) {
