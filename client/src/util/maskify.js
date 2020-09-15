@@ -35,6 +35,7 @@ export async function maskify(masks) {
   await Promise.all([
     faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
     faceapi.nets.faceLandmark68TinyNet.loadFromUri("/models"),
+    faceapi.nets.ssdMobilenetv1.loadFromUri("/models"),
   ]).catch(error => {
     console.error(error)
   })
