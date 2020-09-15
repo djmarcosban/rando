@@ -1,15 +1,15 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const multer = require('multer');
+const { uuid } = require("uuidv4");
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+//var indexRouter = require('./routes/index');
 
-var app = express();
+const app = express();
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -17,15 +17,33 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 
+const upload = multer({ 
+  storage: multer.diskStorage({
+    destination: 'client/public/modelos/',
+    filename(req, file, callback) {
+      const fileName = `${uuid()}-${file.originalname}`;
 
+      return callback(null, fileName);
+    },
+  }),
+})
 
-app.use('/upload', indexRouter);
-app.use('/users', usersRouter);
+app.get('/upload', function(req, res, next) {
+  res.render('index', { title: 'Express' });
+});
 
+app.get('/', (req, res, next) => {
+	res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
 
+// rota indicado no atributo action do formulário
+app.post('/upload', upload.single('file'), function(req, res) {
+	const { filename, path } = req.file;
+	//res.send(filename)
+	res.redirect('http://localhost:3000/?modelo=modelos/' + filename + '&oculos=images/overlay-blue-monster.png');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -43,34 +61,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-
-
-
-
-
-
-
-
-
-
-// Put all API endpoints under '/api'
-app.get('/url', (req, res) => {
-  res.send('test')
-});
-
-
-module.exports = app;
-
-
-
-
-
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/client/build/index.html'));
-});
-
 const port = process.env.PORT || 5000;
 app.listen(port);
 
 console.log(`Server listening on ${port}`);
+
+module.exports = app;

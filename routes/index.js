@@ -20,7 +20,7 @@ const upload = multer({
 })
 
 // rota indicado no atributo action do formulário
-router.post('/', upload.single('file'), function(req, res) {
+router.post('/upload', upload.single('file'), function(req, res) {
 
 	const { filename, path } = req.file;
 
