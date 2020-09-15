@@ -6,8 +6,6 @@ const logger = require('morgan');
 const multer = require('multer');
 const { uuid } = require("uuidv4");
 
-//var indexRouter = require('./routes/index');
-
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -30,17 +28,13 @@ const upload = multer({
   }),
 })
 
-app.get('/upload', function(req, res, next) {
+app.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
-});
-
-app.get('/', (req, res, next) => {
-	//res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
 
 app.post('/upload', upload.single('file'), function(req, res) {
 	const { filename, path } = req.file;
-	res.redirect('http://localhost:3000/?modelo=modelos/' + filename + '&oculos=images/overlay-blue-monster.png');
+	res.redirect('http://rando-do-marcos.herokuapp.com/?modelo=modelos/' + filename + '&oculos=images/overlay-blue-monster.png');
 });
 
 app.use(function(req, res, next) {
