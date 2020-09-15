@@ -72,8 +72,9 @@ export async function maskify(masks) {
 
       item.appendChild(overlay)
       console.log("Maskify finished...")
-    }
 
+    }
+    
     // To avoid CORS issues we create a cross-origin-friendly copy of the image.
     const image = new Image()
     image.crossOrigin = "Anonymous"

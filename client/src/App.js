@@ -5,14 +5,36 @@ import "./App.css"
 import { maskify } from "./util/maskify"
 
 export default () => {
+
+  const contador = localStorage.getItem('@oculos-mareye/contador');
+
+  if(contador === null){
+    localStorage.setItem('@oculos-mareye/contador', 1)
+    console.log('Atualizando...')
+    window.location.reload()
+    return false
+  }
+
+  if(contador == 1){
+    console.log('Atualizado!')
+    localStorage.removeItem('@oculos-mareye/contador')
+  }
+
   useEffect(() => {
+
     const oculosParam = getEspecificParam('oculos')
-    const oculosParamSplited = oculosParam.split(",")
+    let oculosParamSplited = ''
+  
+    if(oculosParam !== null){
+      oculosParamSplited = oculosParam.split(",")
+    }else{
+      oculosParamSplited = ['images/overlay-blue-monster.png']
+    }
+
     maskify(oculosParamSplited)
   }, [])
 
   return (
-    
     <div>
       <main className="content">
         <div className="grid">
@@ -20,7 +42,5 @@ export default () => {
         </div>
       </main>
     </div>
-
   );
 }
-

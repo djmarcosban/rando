@@ -2,10 +2,13 @@ import React, { Component }  from 'react';
 import { getEspecificParam } from "./getparams";
 
 class GridItem extends Component {
-
   renderRow(row) {
 
-    const modeloParam = getEspecificParam('modelo')
+    let modeloParam = 'images/maria.jpg'
+
+    if(getEspecificParam('modelo') !== null){
+      modeloParam = getEspecificParam('modelo')
+    }
 
     return (
       <div key={row} className="grid-item">
@@ -19,13 +22,18 @@ class GridItem extends Component {
   }
 
   render() {
-
     let rows = []
 
     const oculosParam = getEspecificParam('oculos')
-    const oculosParamSplited = oculosParam.split(",")
+    let oculosParamSplited = ''
+    let oculosParamLength = '1'
 
-    for (let i = 0; i < oculosParamSplited.length; i++) {
+    if(oculosParam !== null){
+      oculosParamSplited = oculosParam.split(",")
+      oculosParamLength = oculosParamSplited.length
+    }
+
+    for (let i = 0; i < oculosParamLength; i++) {
     //for (let i = 0; i < 3; i++) {
       rows.push(i)
     }
