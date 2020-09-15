@@ -3,16 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "face-api.js": "^0.21.0",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
+    "face-api.js": "^0.22.2",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
     "react-scripts": "^3.4.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:5000",
