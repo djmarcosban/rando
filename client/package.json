@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "face-api.js": "^0.21.0",
-    "react": "next",
-    "react-dom": "next",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-scripts": "^3.4.3"
   },
   "scripts": {
