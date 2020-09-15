@@ -26,7 +26,7 @@ router.post('/upload', upload.single('file'), function(req, res) {
 
 	//res.send(filename)
 
-	res.redirect('http://localhost:3000/?modelo=modelos/' + filename + '&oculos=images/overlay-blue-monster.png');
+	res.redirect('http://rando-do-marcos.herokuapp.com/?modelo=modelos/' + filename + '&oculos=images/overlay-blue-monster.png');
 });
 
 module.exports = router;
