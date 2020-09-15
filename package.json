@@ -13,7 +13,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "heroku-postbuild": "cd client && yarn && yarn run build"
+    "heroku-postbuild": "cd client && npm install && yarn && yarn run build"
   },
   "description": "Faceapi da Mareye",
   "repository": {
