@@ -4,7 +4,7 @@ const multer = require('multer');
 const { uuid } = require("uuidv4");
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/upload', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
