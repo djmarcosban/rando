@@ -27,8 +27,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "resolutions": {
-    "tfjs-image-recognition-base/@tensorflow/tfjs-core": "<=1.2.9"
   }
 }

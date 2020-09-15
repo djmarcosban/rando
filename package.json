@@ -9,12 +9,15 @@
   },
   "scripts": {
     "start": "node index.js",
-    "heroku-postbuild": "cd client && npm start"
+    "heroku-postbuild": "cd client && yarn && yarn run build"
   },
   "description": "A password generator built with React and Express.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dceddia/rando.git"
+  },
+  "resolutions": {
+    "tfjs-image-recognition-base/@tensorflow/tfjs-core": "<=1.2.9"
   },
   "keywords": [],
   "author": "",
