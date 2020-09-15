@@ -12,6 +12,7 @@ class GridItem extends Component {
         <img
           src={modeloParam}
           alt=""
+          style={{maxWidth:100+'%', width:380+'px'}}
         />
       </div>
     )
