@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 const upload = multer({ 
   storage: multer.diskStorage({
-    destination: 'client/public/modelos/',
+    destination: 'public/modelos/',
     filename(req, file, callback) {
       const fileName = `${uuid()}-${file.originalname}`;
 
