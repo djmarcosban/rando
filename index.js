@@ -1,7 +1,8 @@
 const createError = require('http-errors');
 const express = require('express');
-const path = require('path');
+const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 const logger = require('morgan');
 const multer = require('multer');
 const { uuid } = require("uuidv4");
@@ -12,8 +13,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+//app.use(require('connect').bodyParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client/build')));
 
@@ -33,13 +35,43 @@ app.get('/', function(req, res, next) {
 });
 
 app.get('/upload', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.redirect('https://mareye.com.br/provador-online/');
 });
 
+app.get('/upload/:oculos', function(req, res, next) {
+
+  const oculos = req.params.oculos;
+
+  if(oculos == undefined || oculos == ''){
+    res.redirect("https://mareye.com.br/provador-online/")
+    return false;
+  }else{
+    res.render('index', {
+      title: 'Mareyê Eyewear - Provador Online',
+      oculos: oculos
+    })
+  }
+});
+
+
 app.post('/upload', upload.single('file'), function(req, res) {
-	const { filename, path } = req.file;
-	//res.send(req.file)
-	res.redirect('http://rando-do-marcos.herokuapp.com/?modelo=modelos/' + filename + '&oculos=images/overlay-blue-monster.png');
+  const { filename, path } = req.file;
+  let t = req.body.oculos;
+  let r = t.split(',');
+
+  r.forEach(geraURL)
+
+  function geraURL(item, index, arr) {
+    arr[index] = 'images/' + item + '.jpg';
+  }
+
+  s = r.toString()
+
+  //console.log(s)
+  
+  //images/overlay-blue-monster.png
+
+  res.redirect('http://rando-do-marcos.herokuapp.com/?modelo=modelos/' + filename + '&oculos=' + s);
 });
 
 app.use(function(req, res, next) {

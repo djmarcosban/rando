@@ -1,14 +1,117 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-      <input type="file" name="file" accept="image/*"><br>
-      <input type="submit">
-    </form>
-  </body>
+<head>
+<title><%= title %></title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+<meta name="theme-color" content="#000000"/>
+<link rel="stylesheet" href="https://mareye.com.br/provador-online/public/css/bootstrap.css">
+<link rel="stylesheet" href="https://mareye.com.br/provador-online/public/css/fonts.min.css">
+<link rel="shortcut icon" href="https://mareye.com.br/provador-online/public/img/favicon.png">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://mareye.com.br/provador-online/public/css/index.css">
+
+<script type="text/javascript">
+$(window).on('load', function(){
+  $('#overlay').removeClass('show')
+})
+</script>
+
+<script type="text/javascript">
+  if ("onpagehide" in window) {
+    window.addEventListener("pageshow", function() {
+      setTimeout(function(){
+        $('#overlay').removeClass('show')
+      }, 120);
+    }, false);
+  }else{
+    window.addEventListener("load", function() {
+      setTimeout(function(){
+        $('#overlay').removeClass('show')
+      }, 120);
+    }, false);
+  }   
+</script>
+</head>
+
+<body>   
+<div id="overlay" class="show">
+  <img src="https://mareye.com.br/provador-online/public/img/logo.png" alt="Mareyê Eyewear">
+</div>
+
+<section class="container-fluid bg-white pt-3 pb-3 shadow-sm" id="header">
+  <div class="row d-flex align-items-center justify-content-between">
+    <div class="col-6 text-left">
+      <a href="./" class="button-link">
+        <img src="https://mareye.com.br/provador-online/public/img/logo.png" alt="">
+      </a>
+    </div>
+    <div class="col-6 text-right">
+      <span>Provador Online</span>
+    </div>
+  </div>
+</section>
+
+<section class="container-fluid mt-3">
+
+  <!-- breadcump title -->
+  <div class="row" id="breadcump-title">
+    <div class="col">
+      <div class="bordas">
+        <span>Tire uma foto do seu rosto:</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- breadcump -->
+  <div class="row" id="breadcump">
+    <div class="col d-flex justify-content-between align-items-center">
+      <span class="etapa">Etapa 2 de 2</span>
+      <a href="http://localhost/mareye/oculos/etapa-1" class="revisar-link button-link">Revisar produtos</a>
+    </div>
+  </div>
+
+  <!-- content -->
+  <div class="row pb-5 mb-3" id="content">
+    <div class="col text-center">
+      <form action="/upload" method="post" enctype="multipart/form-data" id="form-upload-modelo">
+        <div class="custom-file">
+          <input type="file" onchange="loadFile(event)" accept="image/*" class="custom-file-input" id="input-modelo" name="file" />
+          <label for="input-modelo" class="btn btn-primary open-camera">Abrir câmera</label>
+        </div>
+        <input type="hidden" name="oculos" value="<%= oculos %>">
+        <!-- botao de continuar -->
+        <button type="submit" class="btn btn-primary next-button button-link etapa2" disabled="disabled">Continuar</button>
+        <!-- botao de continuar end -->
+      </form>
+      <div id="modelo-preview">
+        <img id="output" class="w-75 mx-auto mt-4" />
+      </div>
+      <p class="aviso">*As fotos armazenadas em nossos servidores terão um tempo de vida útil de 2 horas e serão automaticamente excluidas após esse período.
+Seus usos são apenas para o <b>Provador Online da Mareyê Eyewear</b> e não as utilizaremos para outro fim.</p> 
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+var loadFile = function(event){
+  var output = document.getElementById('output');
+  output.src = URL.createObjectURL(event.target.files[0]);
+  output.onload = function(){
+    URL.revokeObjectURL(output.src)
+    $('button.next-button.etapa2').removeAttr('disabled')
+  }
+
+  if($(output).length > 0){
+    $('button.next-button.etapa2').attr('disabled','disabled')
+  }else{
+    $('button.next-button.etapa2').removeAttr('disabled')
+  }
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"  integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
 </html>
