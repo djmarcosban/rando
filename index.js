@@ -62,7 +62,7 @@ app.post('/upload', upload.single('file'), function(req, res) {
   r.forEach(geraURL)
 
   function geraURL(item, index, arr) {
-    arr[index] = 'images/' + item + '.jpg';
+    arr[index] = 'images/' + item + '.png';
   }
 
   s = r.toString()
