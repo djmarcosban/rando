@@ -15,7 +15,7 @@ export default () => {
     return false
   }
 
-  if(contador === 1){
+  if(contador == 1){
     console.log('Atualizado!')
     localStorage.removeItem('@oculos-mareye/contador')
   }
